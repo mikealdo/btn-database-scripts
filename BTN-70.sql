@@ -1,0 +1,1 @@
+select * from BTN_DOC d left join BTN_DOC_LINE_NOPART dl on d.ID = dl.BTN_DOC_ID where d.DOC_STATUS = 'W' and dl.LINE_STATUS = 'X';
