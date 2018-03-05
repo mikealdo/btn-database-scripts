@@ -1,0 +1,42 @@
+#DataSourceSettings#
+#LocalDataSource: Oracle - BTN_OWNER@localhost:50161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - BTN_OWNER@localhost:50161" group="50161-LOCALHOST" uuid="0cce54b4-4965-46c5-92b3-74633bb01f70"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:50161:XE</jdbc-url><secret-storage>master_key</secret-storage><user-name>BTN_OWNER</user-name><introspection-schemas>*:BTN_OWNER</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
+#LocalDataSource: Oracle - LTS_OWNER@localhost:50161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - LTS_OWNER@localhost:50161" group="50161-LOCALHOST" uuid="87d39c32-ad85-4293-8930-59fa2f5df196"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:50161:XE</jdbc-url><secret-storage>master_key</secret-storage><user-name>LTS_OWNER</user-name><introspection-schemas>*:BTN_OWNER,LTS_OWNER</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
+#LocalDataSource: Oracle - WAPL_OWNER@localhost:50161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - WAPL_OWNER@localhost:50161" group="50161-LOCALHOST" uuid="2dffdab5-e3a0-4c9b-8a1a-6b0f2dcf81b2"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:50161:XE</jdbc-url><secret-storage>master_key</secret-storage><user-name>WAPL_OWNER</user-name><introspection-schemas>*:BTN_OWNER,WAPL_OWNER</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
+#LocalDataSource: Oracle - LTS_TECH@localhost:50161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - LTS_TECH@localhost:50161" group="50161-LOCALHOST" uuid="441a7f80-b191-46b2-8692-606614dbe04e"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:50161:XE</jdbc-url><secret-storage>master_key</secret-storage><user-name>LTS_TECH</user-name><introspection-schemas>*:BTN_OWNER,LTS_TECH</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
+#DataSourceSettings#
+#LocalDataSource: Oracle - BTN_OWNER@localhost:49161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - BTN_OWNER@localhost:49161" group="49161-LOCALHOST" uuid="b1da9ac5-fa3a-4e9f-964a-5b558fde4fd3"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:49161:XE</jdbc-url><secret-storage>master_key</secret-storage><first-sync>true</first-sync><user-name>BTN_OWNER</user-name><introspection-schemas>*:BTN_OWNER</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
+#LocalDataSource: Oracle - LTS_OWNER@localhost:49161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - LTS_OWNER@localhost:49161" group="49161-LOCALHOST" uuid="b57c0388-cbbf-4fc9-8d8a-31e51dc0b5a4"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:49161:XE</jdbc-url><secret-storage>master_key</secret-storage><first-sync>true</first-sync><user-name>LTS_OWNER</user-name><introspection-schemas>*:BTN_OWNER,LTS_OWNER</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
+#LocalDataSource: Oracle - LTS_TECH@localhost:49161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - LTS_TECH@localhost:49161" group="49161-LOCALHOST" uuid="aa4bf7d6-0163-4c70-93f2-597fa715e70d"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:49161:XE</jdbc-url><secret-storage>master_key</secret-storage><first-sync>true</first-sync><user-name>LTS_TECH</user-name><introspection-schemas>*:BTN_OWNER,LTS_TECH</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
+#LocalDataSource: Oracle - WAPL_OWNER@localhost:49161
+#BEGIN#
+<data-source source="LOCAL" name="Oracle - WAPL_OWNER@localhost:49161" group="49161-LOCALHOST" uuid="99541877-fb91-448e-94e1-9e17e766c869"><database-info product="Oracle" version="Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production" jdbc-version="4.0" driver-name="Oracle JDBC driver" driver-version="12.1.0.2.0"><extra-name-characters>$#</extra-name-characters><identifier-quote-string>&quot;</identifier-quote-string></database-info><case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/><driver-ref>oracle</driver-ref><synchronize>true</synchronize><auto-commit>false</auto-commit><jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver><jdbc-url>jdbc:oracle:thin:@localhost:49161:XE</jdbc-url><secret-storage>master_key</secret-storage><first-sync>true</first-sync><user-name>WAPL_OWNER</user-name><introspection-schemas>*:BTN_OWNER,WAPL_OWNER</introspection-schemas><driver-properties><property name="v$session.program" value="DataGrip"/></driver-properties></data-source>
+#END#
+
