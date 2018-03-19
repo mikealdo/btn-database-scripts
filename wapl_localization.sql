@@ -38,6 +38,8 @@ select k.* from wapl_localization_key k;
 select l.* from wapl_localization l where localization_key_id = 13629;
 delete from wapl_localization where id = 19899;
 
+SELECT * from WAPL_LOCALE; -- cs_CZ
+
 select k.* from wapl_localization_key k where not exists (select localization_key_id from wapl_localization l where k.id = l.localization_key_id and locale_id = 2);
 
 SELECT
@@ -47,7 +49,7 @@ SELECT
               LEFT OUTER JOIN (SELECT TEXT, LOCALIZATION_KEY_ID
                                FROM WAPL_LOCALIZATION L
                                LEFT JOIN WAPL_LOCALE LOCALE ON L.LOCALE_ID = LOCALE.ID
-                               WHERE LOCALE.NAME = 'cs_CZ') LL ON LL.LOCALIZATION_KEY_ID = K.ID
+                               WHERE LOCALE.NAME = 'en_US') LL ON LL.LOCALIZATION_KEY_ID = K.ID
               LEFT JOIN WAPL_APPLICATION A ON K.APPLICATION_ID = A.ID
-              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN')
+              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND K.KEY = 'doc.noteFragment.delTime.undefined'
               ORDER BY KEY ASC;

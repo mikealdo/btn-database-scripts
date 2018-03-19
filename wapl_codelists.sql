@@ -16,5 +16,5 @@ from wapl_codelist cl
 where cl.id = r.codelist_id
   and r.master_row_id = master_r.id (+)
   and r.id = val.row_id (+)
-  and cl.key = 'divide_doc'
+  and cl.key = 'cod_store'
 order by r.ord;
