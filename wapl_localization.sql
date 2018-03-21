@@ -49,7 +49,7 @@ SELECT
               LEFT OUTER JOIN (SELECT TEXT, LOCALIZATION_KEY_ID
                                FROM WAPL_LOCALIZATION L
                                LEFT JOIN WAPL_LOCALE LOCALE ON L.LOCALE_ID = LOCALE.ID
-                               WHERE LOCALE.NAME = 'en_US') LL ON LL.LOCALIZATION_KEY_ID = K.ID
+                               WHERE LOCALE.NAME = 'cs_CZ') LL ON LL.LOCALIZATION_KEY_ID = K.ID
               LEFT JOIN WAPL_APPLICATION A ON K.APPLICATION_ID = A.ID
-              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND K.KEY = 'doc.noteFragment.delTime.undefined'
+              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND K.KEY = 'org.hibernate.validator.constraints.Length.message'
               ORDER BY KEY ASC;

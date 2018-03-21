@@ -6,3 +6,9 @@ select * FROM BTN_DOC where ID = 2465031;
 SELECT d.DOC_NO, d.DOC_TYPE, d.FLAG_STATUS, d.DOC_STATUS, d.* from BTN_DOC d where d.DOC_NO = 200096313;
 
 select * FROM BTN_DOC where DOC_TYPE = 'COD' and DOC_STATUS = 'F' and ORDER_SOURCE = 'BTN';
+
+SELECT * from BTN_WS_LOG where MESSAGE is not null;
+
+select * from BTN_EDI_MESSAGE_TYPE;
+
+update BTN_EDI_MESSAGE_TYPE set DIRECTORY = '/orders_in' where id = 4;

@@ -5,10 +5,12 @@ WHERE dl.LINE_STATUS = 'X' AND dl.DOC_TYPE = 'OBP' AND exists(SELECT d.id
                                                               WHERE d.id = dl.BTN_DOC_ID);
 
 SELECT
-  dl.line_status,
-  dl.*
-FROM btn_doc_line dl
-WHERE dl.BTN_DOC_ID = 800022852;
+  d.id,
+  count(dl.id) as cnt
+FROM btn_doc d left join btn_doc_line dl on d.ID = dl.BTN_DOC_ID
+GROUP BY d.ID
+HAVING count(dl.ID) > 10
+ORDER BY cnt desc;
 
 UPDATE BTN_DOC_LINE
 SET LINE_STATUS = 'X'
