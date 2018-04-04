@@ -12,3 +12,7 @@ SELECT * from BTN_WS_LOG where MESSAGE is not null;
 select * from BTN_EDI_MESSAGE_TYPE;
 
 update BTN_EDI_MESSAGE_TYPE set DIRECTORY = '/orders_in' where id = 4;
+
+select EXTERNAL_DOC_NO from BTN_DOC where EXTERNAL_DOC_NO is NOT NULL ;
+
+select * from wapl_row;

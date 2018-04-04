@@ -16,7 +16,7 @@ from wapl_codelist cl
 where cl.id = r.codelist_id
   and r.master_row_id = master_r.id (+)
   and r.id = val.row_id (+)
-  and cl.key = 'environment'
+  and cl.key = 'doc_type'
 order by r.ord;
 
 update WAPL_ROW set ADDINFO = '{"path": "/opt/edi"}' where CODELIST_ID = 442;

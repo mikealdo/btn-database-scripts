@@ -17,6 +17,16 @@ SELECT * FROM BTN_DEL_TYPE;
 
 update btn_xy set BTN_ARTICLE_ID_LEAD = '292308', BTN_ARTICLE_ID_1 = '292309', BTN_ARTICLE_ID_2 = '292310' where id = 41;
 
+select * from BTN_ARTICLE where ART_NO_DEPOSIT is NOT NULL;
+select a.* from BTN_ARTICLE a  where a.ART_NO_DEPOSIT is NOT NULL and exists (select b.id from btn_article b where b.art_no = a.ART_NO_DEPOSIT);
 
-truncate table btn_icon;
-select * from btn_icon;
+select * from BTN_DOC_LINE where DEPOSIT_LINKAGE is not null;
+
+select s.STOCK_ORDERED, s.ORDERABLE, s.* from BTN_ARTICLE_STORE s where s.BTN_ARTICLE_ID = 278918;
+
+update BTN_ARTICLE_STORE set ART_QTY = 50, STOCK_ACT = 10, STOCK_MIN = 1, STOCK_ORDERED = 10, ACTIVE = 'A', ORDERABLE = 'A' where BTN_ARTICLE_ID = 278918;
+
+select a.ART_NO_DEPOSIT, a.* from BTN_ARTICLE a where a.ID = 278918; -- 366846
+select * from BTN_ARTICLE where ID = 279236;
+
+-- 367820, 366640, 363292
