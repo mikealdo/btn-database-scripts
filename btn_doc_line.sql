@@ -3,8 +3,11 @@ FROM BTN_DOC_LINE dl
 WHERE dl.LINE_STATUS = 'X' AND dl.DOC_TYPE = 'OBP' AND exists(SELECT d.id
                                                               FROM btn_doc d
                                                               WHERE d.id = dl.BTN_DOC_ID);
-SELECT *
-FROM BTN_DOC where COUNT_LINE > 7;
+SELECT * FROM BTN_DOC where COUNT_LINE > 7;
+select SELL_PRICE_TYPE
+from BTN_DOC_LINE where SELL_PRICE_TYPE like '%AKCE XY%';
+
+select SELL_PRICE from BTN_ARTICLE_STORE where SELL_PRICE is not null;
 
 SELECT
   d.id,
