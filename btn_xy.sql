@@ -1,4 +1,5 @@
-update btn_xy set date_to = to_date('5.5.2018', 'DD.MM.YYYY') where id = 41;
+update btn_xy set date_to = to_date('5.5.2018', 'DD.MM.YYYY');
+update btn_xy set date_to = to_date('5.1.2018', 'DD.MM.YYYY') where id = 1;
 
 SELECT * FROM WAPL_ROW WHERE CODELIST_ID IN (SELECT ID FROM WAPL_CODELIST WHERE KEY = 'xx_type');
 
@@ -15,7 +16,13 @@ select * from btn_xy;
 SELECT * FROM BTN_XY_STORE;
 SELECT * FROM BTN_DEL_TYPE;
 
+SELECT TRUNC(to_timestamp('28.03.2018 09:39:00','DD.MM.YYYY HH:MI:SS'), 'MI') "New Year" FROM DUAL;
+
+select TRUNC(sysdate, 'MI') from dual;
+
 update btn_xy set BTN_ARTICLE_ID_LEAD = '292308', BTN_ARTICLE_ID_1 = '292309', BTN_ARTICLE_ID_2 = '292310' where id = 41;
+
+update btn_xy set LAST_USED_TS = to_timestamp('28.03.2018 09:39:00,000000000','DD.MM.YYYY HH:MI:SS,FF') where id = 21;
 
 select * from BTN_ARTICLE where ART_NO_DEPOSIT is NOT NULL;
 select a.* from BTN_ARTICLE a  where a.ART_NO_DEPOSIT is NOT NULL and exists (select b.id from btn_article b where b.art_no = a.ART_NO_DEPOSIT);

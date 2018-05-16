@@ -42,6 +42,11 @@ SELECT * from WAPL_LOCALE; -- cs_CZ
 
 select k.* from wapl_localization_key k where not exists (select localization_key_id from wapl_localization l where k.id = l.localization_key_id and locale_id = 2);
 
+SELECT TEXT, LOCALIZATION_KEY_ID
+                               FROM WAPL_LOCALIZATION L
+                               LEFT JOIN WAPL_LOCALE LOCALE ON L.LOCALE_ID = LOCALE.ID
+                               WHERE LOCALE.NAME = 'cs_CZ' and l.text like '%Preference%';
+
 SELECT
               K.KEY AS KEY,
               nvl(LL.TEXT, K.KEY) AS VALUE
@@ -51,5 +56,5 @@ SELECT
                                LEFT JOIN WAPL_LOCALE LOCALE ON L.LOCALE_ID = LOCALE.ID
                                WHERE LOCALE.NAME = 'cs_CZ') LL ON LL.LOCALIZATION_KEY_ID = K.ID
               LEFT JOIN WAPL_APPLICATION A ON K.APPLICATION_ID = A.ID
-              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND K.KEY like '%auth.%'
+              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND K.key = 'doc.docLine.substitutePreferenceKey'
               ORDER BY KEY ASC;

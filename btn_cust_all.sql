@@ -1,5 +1,5 @@
-SELECT * from BTN_CUST;
-SELECT * from BTN_CUST where cust_no = 104200;
+SELECT subst_prefer from BTN_CUST;
+SELECT * from BTN_CUST where cust_no = 224559;
 
 select * from btn_cust where (cust_cc, cust_cc_store_no) not in (select cust_no, store_no from lts_owner.cust_all);
 

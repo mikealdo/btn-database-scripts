@@ -1,4 +1,4 @@
-SELECT * from BTN_PARAMETER where PAR_NAME = 'obj_line_max_qty';
+SELECT * from BTN_PARAMETER where PAR_NAME = 'cod_bulk_get';
 
 update BTN_PARAMETER set PAR_DEFAULT = 'http://localhost:8111' where PAR_NAME = 'cod_ws_url';
 update BTN_PARAMETER set PAR_DEFAULT = 'V09' where PAR_NAME = 'create_order_version';
