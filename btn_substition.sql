@@ -15,6 +15,9 @@ SELECT
 FROM btn_article a LEFT JOIN btn_article_store ast ON a.id = ast.btn_article_id
 WHERE ast.store_no = 6;
 
+update btn_article_store set ART_QTY = 1 where id = 448556876;
+update btn_article_store set ART_QTY = 6 where id = 448556877;
+
 SELECT *
 FROM btn_article_store;
 
@@ -34,10 +37,17 @@ SET art_qty = 36
 WHERE id = 448545360;
 
 SELECT *
-FROM btn_cust where store_no = 6;
-SELECT * from BTN_GRP_TYPE;
-SELECT * from BTN_DOC_LINE;
-SELECT * from BTN_DOC;
+FROM btn_cust
+where store_no = 6;
+SELECT *
+FROM btn_cust
+where cust_no = '150775';
+SELECT *
+from BTN_GRP_TYPE;
+SELECT *
+from BTN_DOC_LINE;
+SELECT *
+from BTN_DOC;
 
 
 SELECT *
@@ -81,6 +91,8 @@ WHERE btn_art.id = btn_art_st.btn_article_id
 SELECT *
 FROM btn_article
 WHERE id = 290327;
+SELECT count(*)
+FROM btn_article;
 SELECT count(*)
 FROM btn_article a LEFT JOIN btn_article_store ast ON a.id = ast.btn_article_id
 WHERE a.active = 'A' AND ast.store_no = 6;
@@ -161,24 +173,34 @@ START WITH btn_article_id = 290285
 CONNECT BY PRIOR substitute_btn_article_id = btn_article_id
 ORDER SIBLINGS BY substitute_btn_article_id;
 
+select *
+from btn_article_store;
+SELECT R.ID
+FROM WAPL_REGION_MAP RM LEFT JOIN WAPL_REGION R ON RM.STORE_NO = R.ID
+WHERE RM.STORE_NO = 6;
+
 -- cust_store_no, cust_no, regions, date_to, date_from
 SELECT
-  substitute.id                        AS id,
-  substitute.btn_article_id            AS art_id,
-  substitute.substitute_btn_article_id AS substitute_art_id,
-  originalarticle.art_no               AS art_no,
-  substarticle.art_no                  AS substitute_art_no,
-  substitute.cust_no                   AS cust_no11_95_3_,
-  substitute.cust_store_no             AS cust_store_no12_95_3_,
-  substitute.substitute_descr          AS substitute_descr15_95_3_,
-  substitute.substitute_type           AS substitute_type16_95_3_,
-  region.name                          AS region_name
+  substitute.id                                                                AS id,
+  substitute.btn_article_id                                                    AS art_id,
+  substitute.substitute_btn_article_id                                         AS substitute_art_id,
+  originalarticle.art_no                                                       AS art_no,
+  substarticle.art_no                                                          AS substitute_art_no,
+  substitute.cust_no                                                           AS cust_no11_95_3_,
+  substitute.cust_store_no                                                     AS cust_store_no12_95_3_,
+  substitute.substitute_descr                                                  AS substitute_descr15_95_3_,
+  substitute.substitute_type                                                   AS substitute_type16_95_3_,
+  region.name                                                                  AS region_name,
+  ast.ID                                                                       as ast_id,
+  (nvl(ast.art_qty, 0) + nvl(ast.depot_art_qty, 0) +
+   (nvl(substarticle.mutation_stock_koef, 1) * nvl(ast.mut_art_qty, 0)) +
+   (nvl(substarticle.mutation_stock_koef, 1) * nvl(ast.depot_mut_art_qty, 0))) as quantity
 FROM btn_substitute substitute
   INNER JOIN btn_article originalarticle ON substitute.btn_article_id = originalarticle.id
   INNER JOIN btn_article substarticle ON substitute.substitute_btn_article_id = substarticle.id
-  LEFT JOIN btn_article_store ast ON substarticle.id = ast.btn_article_id
+  LEFT JOIN btn_article_store ast ON SUBSTARTICLE.ID = ast.btn_article_id
   LEFT JOIN wapl_owner.wapl_region region ON substitute.region_id = region.id
-WHERE ((substitute.cust_store_no = 6 AND substitute.cust_no = 224559) OR region.id IN (5) OR
+WHERE ((substitute.cust_store_no = 6 AND substitute.cust_no = 150775) OR region.id IN (5) OR
        substitute.substitute_type = 'P')
       AND ((substitute.date_to IS NULL AND substitute.date_from IS NULL) OR
            (substitute.date_from <= to_timestamp('19-DEC-17 02.48.14.066000000 PM', 'DD-MON-RR HH.MI.SSXFF AM') AND
@@ -196,28 +218,78 @@ WHERE ((substitute.cust_store_no = 6 AND substitute.cust_no = 224559) OR region.
            (nvl(substarticle.mutation_stock_koef, 1) * nvl(ast.mut_art_qty, 0)) +
            (nvl(substarticle.mutation_stock_koef, 1) * nvl(ast.depot_mut_art_qty, 0))) > 0;
 
-SELECT
-  substitute.id                        AS id,
-  substitute.btn_article_id            AS art_id,
-  substitute.substitute_btn_article_id AS substitute_art_id,
-  originalarticle.art_no               AS art_no,
-  substarticle.art_no                  AS substitute_art_no,
-  substitute.substitute_descr          AS substitute_descr1ption,
-  substitute.substitute_type           AS substitute_type
-FROM btn_substitute substitute INNER JOIN btn_article originalarticle ON substitute.btn_article_id = originalarticle.id
-  INNER JOIN btn_article substarticle ON substitute.substitute_btn_article_id = substarticle.id
-  LEFT JOIN btn_article_store ast ON substarticle.id = ast.btn_article_id
-  LEFT JOIN wapl_owner.wapl_region region ON substitute.region_id = region.id
-WHERE ((substitute.cust_store_no = 6 AND substitute.cust_no = 1234) OR
-       region.id IN (5) OR
-       substitute.substitute_type = 'P') AND ((substitute.date_to IS NULL AND substitute.date_from IS NULL) OR
-                                              (substitute.date_from <= to_timestamp('19-DEC-17 02.48.14.066000000 PM', 'DD-MON-RR HH.MI.SSXFF AM') AND
-                                               substitute.date_to IS NULL) OR
-                                              (substitute.date_from <= to_timestamp('19-DEC-17 02.48.14.066000000 PM', 'DD-MON-RR HH.MI.SSXFF AM') AND
-                                               substitute.date_to >= to_timestamp('19-DEC-17 02.48.14.066000000 PM', 'DD-MON-RR HH.MI.SSXFF AM')))
-      AND ast.store_no = 6 AND (ast.manual_block IS NULL OR ast.manual_block <> 'A') AND
-      (ast.block_ind IS NULL OR ast.block_ind <> 1) AND
-      (substarticle.manual_block IS NULL OR substarticle.manual_block <> 'A') AND ast.active = 'A' AND
-      substarticle.active = 'A' AND (nvl(ast.art_qty, 0) + nvl(ast.depot_art_qty, 0) +
-                                     (nvl(substarticle.mutation_stock_koef, 1) * nvl(ast.mut_art_qty, 0)) +
-                                     (nvl(substarticle.mutation_stock_koef, 1) * nvl(ast.depot_mut_art_qty, 0))) > 0;
+select
+  SUBSTITUTE.ID                        as ID,
+  SUBSTITUTE.BTN_ARTICLE_ID            as ART_ID,
+  SUBSTITUTE.SUBSTITUTE_BTN_ARTICLE_ID as SUBSTITUTE_ART_ID,
+  ORIGINALARTICLE.ART_NO               as ART_NO,
+  ORIGINALARTICLE.DESCR                as ART_DESCR,
+  SUBSTARTICLE.ART_NO                  as SUBSTITUTE_ART_NO,
+  SUBSTARTICLE.DESCR                   as SUBSTITUTE_ART_DESCR,
+  SUBSTITUTE.SUBSTITUTE_DESCR          as SUBSTITUTE_DESCR1PTION,
+  SUBSTITUTE.SUBSTITUTE_TYPE           as SUBSTITUTE_TYPE
+from BTN_SUBSTITUTE SUBSTITUTE inner join BTN_ARTICLE ORIGINALARTICLE on SUBSTITUTE.BTN_ARTICLE_ID = ORIGINALARTICLE.ID
+  inner join BTN_ARTICLE SUBSTARTICLE on SUBSTITUTE.SUBSTITUTE_BTN_ARTICLE_ID = SUBSTARTICLE.ID
+  left join BTN_ARTICLE_STORE AST on SUBSTARTICLE.ID = AST.BTN_ARTICLE_ID
+  left join WAPL_OWNER.WAPL_REGION REGION on SUBSTITUTE.REGION_ID = REGION.ID
+where ((SUBSTITUTE.CUST_STORE_NO = 6 and SUBSTITUTE.CUST_NO = 6) or SUBSTITUTE.SUBSTITUTE_TYPE = 'P') and
+      ((SUBSTITUTE.DATE_TO is null and SUBSTITUTE.DATE_FROM is null) or (SUBSTITUTE.DATE_FROM <= to_timestamp('19-DEC-17 02.48.14.066000000 PM', 'DD-MON-RR HH.MI.SSXFF AM') and SUBSTITUTE.DATE_TO is null) or
+       (SUBSTITUTE.DATE_FROM <= to_timestamp('19-DEC-17 02.48.14.066000000 PM', 'DD-MON-RR HH.MI.SSXFF AM') and SUBSTITUTE.DATE_TO >= to_timestamp('19-DEC-18 02.48.14.066000000 PM', 'DD-MON-RR HH.MI.SSXFF AM'))) and AST.STORE_NO = 6 and (AST.MANUAL_BLOCK is NULL or AST.MANUAL_BLOCK <> 'A') and
+      (AST.BLOCK_IND is NULL or AST.BLOCK_IND <> 1) and (SUBSTARTICLE.MANUAL_BLOCK is NULL or SUBSTARTICLE.MANUAL_BLOCK <> 'A') and AST.ACTIVE = 'A' and SUBSTARTICLE.ACTIVE = 'A' and
+      (nvl(AST.ART_QTY, 0) + nvl(AST.DEPOT_ART_QTY, 0) + (nvl(SUBSTARTICLE.MUTATION_STOCK_KOEF, 1) * nvl(AST.MUT_ART_QTY, 0)) + (nvl(SUBSTARTICLE.MUTATION_STOCK_KOEF, 1) * nvl(AST.DEPOT_MUT_ART_QTY, 0))) > 0;
+
+select
+  SUBSTITUTE.ID                                                                                            as ID,
+  SUBSTITUTE.BTN_ARTICLE_ID                                                                                as ART_ID,
+  SUBSTITUTE.SUBSTITUTE_BTN_ARTICLE_ID                                                                     as SUBSTITUTE_ART_ID,
+  ORIGINALARTICLE.ART_NO                                                                                   as ART_NO,
+  ORIGINALARTICLE.DESCR                                                                                    as ART_DESCR,
+  SUBSTARTICLE.ART_NO                                                                                      as SUBSTITUTE_ART_NO,
+  SUBSTARTICLE.DESCR                                                                                       as SUBSTITUTE_ART_DESCR,
+  SUBSTITUTE.SUBSTITUTE_DESCR                                                                              as SUBSTITUTE_DESCR1PTION,
+  SUBSTITUTE.SUBSTITUTE_TYPE                                                                               as SUBSTITUTE_TYPE,
+  SUBSTITUTE.USAGE_COUNT                                                                                   as SUBSTITUTE_USAGE_COUNT
+ from BTN_SUBSTITUTE SUBSTITUTE
+  inner join BTN_ARTICLE ORIGINALARTICLE on SUBSTITUTE.BTN_ARTICLE_ID = ORIGINALARTICLE.ID
+  inner join BTN_ARTICLE SUBSTARTICLE on SUBSTITUTE.SUBSTITUTE_BTN_ARTICLE_ID = SUBSTARTICLE.ID
+  left join BTN_ARTICLE_STORE AST on SUBSTARTICLE.ID = AST.BTN_ARTICLE_ID
+  left  join WAPL_OWNER.WAPL_REGION REGION on SUBSTITUTE.REGION_ID = REGION.ID
+ where (
+           (SUBSTITUTE.CUST_STORE_NO = 6 and SUBSTITUTE.CUST_NO = 150775)
+               or REGION.ID in (5
+,34
+,35
+,140
+,360
+,420
+,442
+,463
+,503
+,563
+,160
+,400
+,100
+,340
+,380
+,440
+,583
+,623
+,320
+,322
+,443
+,483
+,544)
+               or SUBSTITUTE.SUBSTITUTE_TYPE = 'P'
+       )
+      and (
+               (SUBSTITUTE.DATE_TO is null and SUBSTITUTE.DATE_FROM is null)
+                   or (SUBSTITUTE.DATE_FROM <= to_timestamp('06-JUN-18 00.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM') and SUBSTITUTE.DATE_TO is null)
+                   or (SUBSTITUTE.DATE_FROM<= to_timestamp('06-JUN-18 00.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM') and SUBSTITUTE.DATE_TO>=to_timestamp('06-JUN-18 00.00.00.000000000 PM','DD-MON-RR HH.MI.SSXFF AM'))
+           )
+      and AST.STORE_NO = 6
+      and (AST.MANUAL_BLOCK is NULL or AST.MANUAL_BLOCK <> 'A')
+      and (AST.BLOCK_IND is NULL or AST.BLOCK_IND <> 1)
+      and (SUBSTARTICLE.MANUAL_BLOCK is NULL or SUBSTARTICLE.MANUAL_BLOCK <> 'A')
+      and AST.ACTIVE = 'A'
+      and SUBSTARTICLE.ACTIVE = 'A'
+      and (nvl(AST.ART_QTY,0) + nvl(AST.DEPOT_ART_QTY,0) + (nvl(SUBSTARTICLE.MUTATION_STOCK_KOEF, 1) * nvl(AST.MUT_ART_QTY,0)) + (nvl(SUBSTARTICLE.MUTATION_STOCK_KOEF, 1) * nvl(AST.DEPOT_MUT_ART_QTY,0))) > 0;

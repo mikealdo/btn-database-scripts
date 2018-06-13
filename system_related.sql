@@ -28,6 +28,9 @@ select * from CUST_ALL;
 select wapl_user_info_pkg.get_context_val('user_info') from dual;
 select wapl_user_info_pkg.get_version() from dual;
 
+select * from all_constraints
+where owner = 'BTN_OWNER'
+and constraint_name = 'SYS_C008633';
 
 update btn_cust set version = 4 where id = 71;
 

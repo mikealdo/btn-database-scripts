@@ -19,10 +19,14 @@ from wapl_codelist cl
 where cl.id = r.codelist_id
   and r.master_row_id = master_r.id (+)
   and r.id = val.row_id (+)
-  and cl.key = 'cod_btn_price_type'
+  and cl.key = 'subst_prefer'
 order by r.ord;
 
 update WAPL_ROW set ADDINFO = '{"path": "/opt/edi"}' where CODELIST_ID = 442;
+
+UPDATE WAPL_OWNER.WAPL_CODELIST
+SET APPLICATION_ID = 2
+WHERE KEY = 'underlimit_active' or KEY = 'underlimit_fee';
 
 select key from wapl_row where codelist_id = (select id from wapl_codelist where key = 'cod_btn_price_type');
 
@@ -66,5 +70,5 @@ from wapl_codelist cl
 where cl.id = r.codelist_id
   and r.master_row_id = master_r.id (+)
   and r.id = val.row_id (+)
-  and cl.name = 'cod_bulk_get'
+  and cl.name = 'underlimit_active'
 order by r.ord;
