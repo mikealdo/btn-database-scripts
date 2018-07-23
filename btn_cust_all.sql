@@ -1,5 +1,5 @@
 SELECT cust_no, STORE_NO from BTN_CUST where STORE_NO = 6;
-SELECT * from BTN_CUST where (cust_no = 150775 or cust_no = 702332) and STORE_NO = 6;
+SELECT * from BTN_CUST where (cust_no = 224310 or cust_no = 702332) and STORE_NO = 6;
 
 select * from btn_cust where (cust_cc, cust_cc_store_no) not in (select cust_no, store_no from lts_owner.cust_all);
 
