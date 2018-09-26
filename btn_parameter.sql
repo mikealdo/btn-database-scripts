@@ -1,4 +1,12 @@
-SELECT * from BTN_PARAMETER where PAR_NAME = 'cod_bulk_get';
+SELECT * from BTN_PARAMETER where PAR_NAME = 'cod_ws_url';
+SELECT * from BTN_PARAMETER where PAR_NAME like '%aut%';
+
+select * from BTN_PARAMETER where PAR_GROUP = 'SET' and REGION_ID is null;
+select * from BTN_PARAMETER where PAR_GROUP = 'SET' and REGION_ID is not null;
+
+select * from WAPL_OWNER.WAPL_REGION;
+
+describe BTN_PARAMETER;
 
 update BTN_PARAMETER set PAR_DEFAULT = 'http://localhost:8111' where PAR_NAME = 'cod_ws_url';
 update BTN_PARAMETER set PAR_DEFAULT = 'V09' where PAR_NAME = 'create_order_version';

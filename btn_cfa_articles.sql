@@ -1,4 +1,7 @@
+select a.id, a.ART_WEIGHT_MEAN, a.ART_UNIT, a.* from BTN_ARTICLE a;
 select a.id, a.ART_WEIGHT_MEAN, a.ART_UNIT, a.* from BTN_ARTICLE a where a.ART_WEIGHT_MEAN is not null;
+
+select a.ART_NO_DEPOSIT, a.* from BTN_ARTICLE a where ART_NO_DEPOSIT is not null;
 
 select
   a.ARO_ARTICLE_NEW,
