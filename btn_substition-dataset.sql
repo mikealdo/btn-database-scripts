@@ -2,6 +2,7 @@ DELETE FROM BTN_SUBSTITUTE
 where CREATED_INITIATOR = 'subst_dataset';
 DELETE FROM BTN_ARTICLE_STORE
 where CREATED_INITIATOR = 'subst_dataset';
+delete from BTN_ARTICLE_STORE where btn_article_id in (select id from btn_article where art_no LIKE '-%');
 DELETE FROM BTN_SALE_CUST_ARTICLE
 where CREATED_INITIATOR = 'subst_dataset';
 DELETE FROM BTN_XY_STORE
@@ -205,10 +206,10 @@ values (SEQ_BTN_XY.NEXTVAL, 'KKK > LLL + MMM', 'Test XY for substitutions', 'Pic
                                                                                              WHERE DESCR = 'KKK'),
                             'KKK is lead', (SELECT ID
                                             FROM BTN_ARTICLE
-                                            WHERE DESCR = 'LLL'), 'LLL is child 1', '10', '13', (SELECT ID
+                                            WHERE DESCR = 'MMM'), 'MMM is child 1', '10', '13', (SELECT ID
                                                                                                  FROM BTN_ARTICLE
-                                                                                                 WHERE DESCR = 'MMM'),
-        'MMM is child 2', '5', '14', '5', sysdate - interval '1' day,
+                                                                                                 WHERE DESCR = 'LLL'),
+        'LLL is child 2', '5', '14', '5', sysdate - interval '1' day,
         sysdate + interval '30' day, 'A', null, 'subst_dataset');
 
 INSERT INTO BTN_XY_STORE (ID, BTN_XY_ID, COD_STORE, CREATED_INITIATOR)
@@ -240,7 +241,7 @@ VALUES (SEQ_BTN_ARTICLE_STORE.NEXTVAL, 6, (SELECT ID
                                            WHERE DESCR = 'OOO'), '13||G|GMS|1|10||||', '13', 'A', '9_3_0',
         'subst_dataset');
 
--- DP2 - deposit for MMM
+-- DP2 - deposit for PPP
 INSERT INTO BTN_ARTICLE (ID, ART_NO, GRP_NO, GRP_DESCR, GRP_TYPE, DPT_NO, VAT, ACTIVE, DESCR, MARKETING_NAME_CZ, SEARCH_TEXT1, SEARCH_TEXT2, ART_UNIT, CONT_SELL_UNIT, STD_FACTOR, ART_WEIGHT, ART_WEIGHT_MEAN, CREATED_INITIATOR, CREATED_TS, EXTRA_TYPE, XY)
 VALUES
   (SEQ_BTN_ARTICLE.NEXTVAL, -999919, 1, 'FOR_SUBST', 'ART', 1, 21, 'A', 'DP2', 'DP2', 'DP2', 'DP2', 'MU', 1, 1, 1, 1,
@@ -268,12 +269,12 @@ VALUES (SEQ_BTN_ARTICLE_STORE.NEXTVAL, 6, (SELECT ID
 
 -- XY ACTION
 insert into BTN_XY (ID, NAME, DESCR, PICKING_NOTE, BTN_ARTICLE_ID_LEAD, ART_DESCR_LEAD, BTN_ARTICLE_ID_1, ART_DESCR_1, QUANTITY_1, SELL_PRICE_1, BTN_ARTICLE_ID_2, ART_DESCR_2, QUANTITY_2, SELL_PRICE_2, MAX_QUANTITY, DATE_FROM, DATE_TO, ACTIVE, LAST_USED_TS, CREATED_INITIATOR)
-values (SEQ_BTN_XY.NEXTVAL, 'NNN > OOO + PPP', 'Test XY for substitutions', 'Picking note', (SELECT ID
+values (SEQ_BTN_XY.NEXTVAL, 'NNN > MMM + PPP', 'Test XY for substitutions', 'Picking note', (SELECT ID
                                                                                              FROM BTN_ARTICLE
                                                                                              WHERE DESCR = 'NNN'),
                             'NNN is lead', (SELECT ID
                                             FROM BTN_ARTICLE
-                                            WHERE DESCR = 'OOO'), 'OOO is child 1', '10', '13', (SELECT ID
+                                            WHERE DESCR = 'MMM'), 'MMM is child 1', '10', '13', (SELECT ID
                                                                                                  FROM BTN_ARTICLE
                                                                                                  WHERE DESCR = 'PPP'),
         'PPP is child 2', '5', '14', '5', sysdate - interval '1' day,
@@ -282,7 +283,7 @@ values (SEQ_BTN_XY.NEXTVAL, 'NNN > OOO + PPP', 'Test XY for substitutions', 'Pic
 INSERT INTO BTN_XY_STORE (ID, BTN_XY_ID, COD_STORE, CREATED_INITIATOR)
 values (SEQ_BTN_XY_STORE.NEXTVAL, (select ID
                                    from BTN_XY
-                                   where NAME = 'NNN > OOO + PPP'), 6, 'subst_dataset');
+                                   where NAME = 'NNN > MMM + PPP'), 6, 'subst_dataset');
 
 -- defined substitutions
 

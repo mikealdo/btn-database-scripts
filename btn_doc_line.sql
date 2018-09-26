@@ -1,11 +1,55 @@
-SELECT *
-FROM BTN_DOC_LINE dl order by DOC_DATE desc;
+SELECT ART_MU, ART_MU_QUANTITY
+FROM BTN_DOC_LINE dl where ART_MU_QUANTITY != '1.000' order by DOC_DATE desc;
+
+select * from ARTICLE_ALL;
+
+select distinct d.STORE_TYPE from btn_doc d;
+
+select d.EXTERNAL_DOC_NO, d.* from btn_doc d where EXTERNAL_DOC_NO is not null and DOC_TYPE = 'OBJ' order by DOC_DATE desc ;
+
+select * from BTN_DOC_LINE order by id desc;
+select dl.* from BTN_DOC_LINE dl left join BTN_ARTICLE a on dl.BTN_ARTICLE_ID = a.ID where a.CREATED_INITIATOR = 'subst_dataset' order by dl.id desc;
+select dl.* from BTN_DOC_LINE dl left join BTN_ARTICLE a on dl.BTN_ARTICLE_ID = a.ID where a.desc = 'AAA' order by dl.id desc;
+
+delete from BTN_DOC_LINE dl where BTN_ARTICLE_ID in (select ID from BTN_ARTICLE a where dl.BTN_ARTICLE_ID = a.ID and a.CREATED_INITIATOR = 'subst_dataset');
+
+SELECT * from BTN_XX_LINE;
+SELECT * from BTN_XY;
+delete from  BTN_XX_LINE;
+DELETE FROM BTN_XY;
+DELETE FROM BTN_XY_STORE;
+
+delete from BTN_ARTICLE where id in (
+    (SELECT ID
+                               FROM BTN_ARTICLE
+                               WHERE DESCR = 'AAA')
+);
+
+select OWNER, CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME, SEARCH_CONDITION, * from ALL_CONSTRAINTS where CONSTRAINT_NAME = 'BTN_ARTICLE_STO_BTN_ARTICLE_FK';
 
 delete from BTN_DOC_LINE where id in (
-91303283,
-91303285,
-91303284,
-91303282
+91303379,
+91303378,
+91303377,
+91303376,
+91303375,
+91303374,
+91303370,
+91303369,
+91303368,
+91303367,
+91303366,
+91303365,
+91303364,
+91303363,
+91303362,
+91303354,
+91303353,
+91303352,
+91303351,
+91303350,
+91303349,
+91303348
 
 );
 

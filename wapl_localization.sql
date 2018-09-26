@@ -39,6 +39,7 @@ select l.* from wapl_localization l where localization_key_id = 13629;
 delete from wapl_localization where id = 19899;
 
 SELECT * from WAPL_LOCALE; -- cs_CZ
+SELECT * from wapl_owner.wapl_application; -- cs_CZ
 
 select k.* from wapl_localization_key k where not exists (select localization_key_id from wapl_localization l where k.id = l.localization_key_id and locale_id = 2);
 
@@ -51,17 +52,21 @@ SELECT
                                LEFT JOIN WAPL_LOCALE LOCALE ON L.LOCALE_ID = LOCALE.ID
                                WHERE LOCALE.NAME = 'cs_CZ') LL ON LL.LOCALIZATION_KEY_ID = K.ID
               LEFT JOIN WAPL_APPLICATION A ON K.APPLICATION_ID = A.ID
-              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND LL.TEXT like '%Přenačíst%'
+              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND LL.TEXT like '%COD`%'
               ORDER BY KEY ASC;
+
+delete from WAPL_OWNER.WAPL_LOCALIZATION where LOCALIZATION_KEY_ID = 20519;
+delete from WAPL_OWNER.WAPL_LOCALIZATION_KEY where ID = 20519;
 
 SELECT
               K.KEY AS KEY,
-              nvl(LL.TEXT, K.KEY) AS VALUE
+              nvl(LL.TEXT, K.KEY) AS VALUE,
+              LOCALIZATION_KEY_ID
              FROM WAPL_LOCALIZATION_KEY K
               LEFT OUTER JOIN (SELECT TEXT, LOCALIZATION_KEY_ID
                                FROM WAPL_LOCALIZATION L
                                LEFT JOIN WAPL_LOCALE LOCALE ON L.LOCALE_ID = LOCALE.ID
                                WHERE LOCALE.NAME = 'cs_CZ') LL ON LL.LOCALIZATION_KEY_ID = K.ID
               LEFT JOIN WAPL_APPLICATION A ON K.APPLICATION_ID = A.ID
-              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND K.key like '%pass%'
+              WHERE (A.NAME = 'WAPL' OR A.NAME = 'BTN') AND K.key like '%notification.notificationIcon.close%'
               ORDER BY KEY ASC;

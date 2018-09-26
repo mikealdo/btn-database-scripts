@@ -3,3 +3,5 @@ select * from wapl_user where login_db is NOT NULL ;
 
 select * from wapl_owner.wapl_dl_job_scheduling_conf;
 UPDATE wapl_owner.wapl_dl_job_scheduling_conf set cron_ex = '0 0/10 * * * ?' where app = 'BTN' and name = 'processPendingPreOrdersJob';
+
+alter table WAPL_OWNER.WAPL_STORE modify TOWN varchar2(150 char);

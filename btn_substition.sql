@@ -2,6 +2,38 @@ SELECT *
 FROM btn_substitute
 ORDER BY id;
 
+(SELECT * FROM BTN_ARTICLE WHERE DESCR = 'KKK');
+
+SELECT * from BTN_DOC_LINE where order by doc_date desc;
+select * from BTN_DOC_LINE_SUBSTITUTE;
+
+delete from btn_doc_line where id in (
+91303326,
+91303324,
+91303327,
+91303342,
+91303345,
+91303344,
+91303322,
+91303346,
+91303347,
+91303343,
+91303302,
+91303297,
+91303298,
+91303296,
+91303295,
+91303294,
+91303286,
+91303287,
+91303288,
+91303289,
+91303290,
+91303291,
+91303292,
+91303293
+);
+
 select a.id, a.ART_NO, a.LEADING_NO, a.DESCR, a.CFA_TYPE, a.CFA_PARENT_ID from BTN_ARTICLE a where a.LEADING_NO = 'CFA123456';
 
 
@@ -9,7 +41,12 @@ delete from BTN_SUBSTITUTE where id = 788;
 
 SELECT
   a.art_no,
+  a.ACTIVE,
+  a.DESCR,
   a.cont_sell_unit,
+  a.GRP_TYPE,
+  a.GRP_DESCR,
+  a.GRP_NO,
   ast.id,
   ast.art_qty,
   ast.depot_art_qty,
@@ -17,13 +54,42 @@ SELECT
   ast.mut_art_qty,
   ast.depot_mut_art_qty
 FROM btn_article a LEFT JOIN btn_article_store ast ON a.id = ast.btn_article_id
-WHERE ast.store_no = 6;
+  where ast.SELL_PRICE  is not null and ast.ART_QTY is not null
+order by ast.ART_QTY desc;
 
-update btn_article_store set ART_QTY = 1 where id = 448556876;
+select aa.art_no from article_all aa left join BTN_ARTICLE a on aa.art_no = a.ART_NO;
+select * from BTN_GRP_TYPE;
+select distinct grp_no, GRP_DESCR from BTN_ARTICLE order by grp_no;
+
+update btn_article_store set ART_QTY = floor(dbms_random.value(0, 10));
+update btn_article_store set ART_QTY = floor(dbms_random.value(0, 10)) where BTN_ARTICLE_ID in (select a.id from BTN_ARTICLE a where a.grp_no in (
+627,
+582,
+402,
+410,
+102,
+424
+));
 update btn_article_store set ART_QTY = 6 where id = 448556877;
 
-SELECT *
-FROM btn_article_store;
+select a.id from BTN_ARTICLE a where a.grp_no in (
+627,
+582,
+402,
+410,
+102,
+424
+);
+
+select grp_no, GRP_DESCR, count(*) as grouped_count from BTN_ARTICLE a having count(*) > 10 group by grp_no, GRP_DESCR order by count(*) desc;
+
+SELECT count(*) FROM btn_article_store where ACTIVE = 'N';
+SELECT count(*) FROM btn_article_store where ACTIVE = 'A';
+SELECT * FROM btn_article_store where SELL_PRICE is not null;
+
+update BTN_ARTICLE_STORE set ACTIVE = 'A';
+
+select a.active, a.DESCR from BTN_ARTICLE a where DESCR like '%JACOBS%';
 
 SELECT *
 FROM btn_store_v;
@@ -53,7 +119,7 @@ where cust_no = '150775';
 SELECT *
 from BTN_GRP_TYPE;
 SELECT *
-from BTN_DOC_LINE;
+from BTN_DOC_LINE order by doc_date desc;
 SELECT *
 from BTN_DOC;
 
